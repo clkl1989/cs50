@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+
+        <script>
+
+        // Part 1: Using JavaScript, add logic so that the buttons change colors when a user clicks on them.
+        // If a user clicks on a button with an incorrect answer, the button should turn red and text should appear beneath the question that says “Incorrect”.
+        // If a user clicks on a button with the correct answer, the button should turn green and text should appear beneath the question that says “Correct!”.
+            function ChangeColor(elmnt, clr) {
+                // reset all buttons color
+                var x = document.getElementsByClassName("answer-btn"); //x = array of elements under the class called "answer-btn"
+
+                for (i = 0; i < x.length; i++) {
+                x[i].style.color = "black";
+                }
+
+                elmnt.style.color = clr;
+
+                if (clr === "red") {
+                    document.getElementById("answer-response-correct").style.display = "none";
+                    document.getElementById("answer-response-wrong").style.display = "block";
+                } else if (clr === "green") {
+                    document.getElementById("answer-response-correct").style.display = "block";
+                    document.getElementById("answer-response-wrong").style.display = "none";
+                }
+            }
+
+            //Note to self: block = show the block; none = hide the block
+            // PArt 2: Using JavaScript, add logic so that the text field changes color when a user confirms their answer.
+            // If the user types an incorrect answer and presses the confirmation button, the text field should turn red and text should appear beneath the question that says “Incorrect”.
+            // If the user types the correct answer and presses the confirmation button, the input field should turn green and text should appear beneath the question that says “Correct!”.
+
+            function ChangeInputColor() {
+                var answerElem = document.getElementById("answer");
+                var answer = answerElem.value;
+
+                if (answer === "Joko Widodo") {
+                    answerElem.style.color = "green";
+                    document.getElementById("free-response-correct").style.display = "block";
+                    document.getElementById("free-response-wrong").style.display = "none";
+                }
+                else
+                {
+                    answerElem.style.color = "red";
+                    document.getElementById("free-response-correct").style.display = "none";
+                    document.getElementById("free-response-wrong").style.display = "block";
+                }
+
+            }
+
+            function ColorBlack(){
+                var answerElem = document.getElementById("answer");
+                answerElem.style.color = "black";
+            }
+
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>What is the Capital City of Sudan?</h3>
+                <div id="answer-response-correct" style="display: none;">Correct!</div>
+                <div id="answer-response-wrong" style="display: none;">Incorrect</div>
+                <button class="answer-btn" onclick="ChangeColor(this, 'red')">Nyala</button>
+                <button class="answer-btn" onclick="ChangeColor(this, 'green')">Khartoum</button>
+                <button class="answer-btn"onclick="ChangeColor(this, 'red')">Port Sudan</button>
+                <button class="answer-btn" onclick="ChangeColor(this, 'red')">Addis Ababa</button>
+
+
+
+
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Who is the President of Indonesia?</h3>
+                <form>
+                    <input id="answer" type="text" placeholder="Name" autocomplete="off" autofocus onchange="ColorBlack()" onkeypress="ColorBlack()" onpaste="ColorBlack()" oninput="ColorBlack()">
+                    <input type="button" value="Confirm" onclick="ChangeInputColor()">
+                </form>
+                <div id="free-response-correct" style="display: none;">Correct!</div>
+                <div id="free-response-wrong" style="display: none;">Incorrect</div>
+                <!-- TODO: Add free response question here -->
+
+            </div>
+
+        </div>
+    </body>
+</html>
